@@ -1,6 +1,7 @@
 .moonbit-toolchain/
 node_modules/
 target/
+_build/
 .moon/
 *.zip
 *.wasm
