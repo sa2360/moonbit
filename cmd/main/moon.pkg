@@ -1,0 +1,7 @@
+import {
+  "osc2026/moonbench" @bench,
+}
+
+options(
+  "is-main": true,
+)

@@ -1,0 +1,258 @@
+{
+  "source_dir": "D:\\CodexProject\\moonbit",
+  "name": "osc2026/moonbench",
+  "packages": [
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "D:\\CodexProject\\moonbit",
+      "root": "osc2026/moonbench",
+      "rel": "",
+      "files": {
+        "D:\\CodexProject\\moonbit\\moonbench.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {
+        "D:\\CodexProject\\moonbit\\moonbench_test.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "mbt-md-files": {
+        "D:\\CodexProject\\moonbit\\README.mbt.md": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\sa\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\sa\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\sa\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\moonbench.mi",
+      "check-command": [
+        "check",
+        "-error-format",
+        "json",
+        "D:\\CodexProject\\moonbit\\moonbench.mbt",
+        "-o",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\moonbench.mi",
+        "-pkg",
+        "osc2026/moonbench",
+        "-std-path",
+        "C:\\Users\\sa\\.moon\\lib\\core\\_build\\wasm-gc\\release\\bundle",
+        "-i",
+        "C:\\Users\\sa\\.moon\\lib\\core\\_build\\wasm-gc\\release\\bundle\\prelude\\prelude.mi:prelude",
+        "-pkg-sources",
+        "osc2026/moonbench:D:\\CodexProject\\moonbit",
+        "-target",
+        "wasm-gc",
+        "-workspace-path",
+        "D:\\CodexProject\\moonbit",
+        "-all-pkgs",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\all_pkgs.json"
+      ],
+      "wbtest-check-command": null,
+      "test-check-command": [
+        "check",
+        "-error-format",
+        "json",
+        "D:\\CodexProject\\moonbit\\README.mbt.md",
+        "D:\\CodexProject\\moonbit\\moonbench_test.mbt",
+        "-doctest-only",
+        "D:\\CodexProject\\moonbit\\moonbench.mbt",
+        "-include-doctests",
+        "-o",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\moonbench.blackbox_test.mi",
+        "-pkg",
+        "osc2026/moonbench_blackbox_test",
+        "-std-path",
+        "C:\\Users\\sa\\.moon\\lib\\core\\_build\\wasm-gc\\release\\bundle",
+        "-i",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\moonbench.mi:moonbench",
+        "-i",
+        "C:\\Users\\sa\\.moon\\lib\\core\\_build\\wasm-gc\\release\\bundle\\prelude\\prelude.mi:prelude",
+        "-pkg-sources",
+        "osc2026/moonbench_blackbox_test:D:\\CodexProject\\moonbit",
+        "-target",
+        "wasm-gc",
+        "-blackbox-test",
+        "-workspace-path",
+        "D:\\CodexProject\\moonbit",
+        "-all-pkgs",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\all_pkgs.json"
+      ],
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    },
+    {
+      "is-main": true,
+      "is-third-party": false,
+      "root-path": "D:\\CodexProject\\moonbit\\cmd\\main",
+      "root": "osc2026/moonbench",
+      "rel": "cmd/main",
+      "files": {
+        "D:\\CodexProject\\moonbit\\cmd\\main\\main.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\sa\\.moon\\lib\\core\\prelude"
+        },
+        {
+          "path": "osc2026/moonbench",
+          "alias": "bench",
+          "fspath": "D:\\CodexProject\\moonbit"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\sa\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\sa\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\cmd\\main\\main.mi",
+      "check-command": [
+        "check",
+        "-error-format",
+        "json",
+        "D:\\CodexProject\\moonbit\\cmd\\main\\main.mbt",
+        "-o",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\cmd\\main\\main.mi",
+        "-pkg",
+        "osc2026/moonbench/cmd/main",
+        "-is-main",
+        "-std-path",
+        "C:\\Users\\sa\\.moon\\lib\\core\\_build\\wasm-gc\\release\\bundle",
+        "-i",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\moonbench.mi:bench",
+        "-i",
+        "C:\\Users\\sa\\.moon\\lib\\core\\_build\\wasm-gc\\release\\bundle\\prelude\\prelude.mi:prelude",
+        "-pkg-sources",
+        "osc2026/moonbench/cmd/main:D:\\CodexProject\\moonbit\\cmd\\main",
+        "-target",
+        "wasm-gc",
+        "-workspace-path",
+        "D:\\CodexProject\\moonbit",
+        "-all-pkgs",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\all_pkgs.json"
+      ],
+      "wbtest-check-command": null,
+      "test-check-command": [
+        "check",
+        "-error-format",
+        "json",
+        "-doctest-only",
+        "D:\\CodexProject\\moonbit\\cmd\\main\\main.mbt",
+        "-include-doctests",
+        "-o",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\cmd\\main\\main.blackbox_test.mi",
+        "-pkg",
+        "osc2026/moonbench/cmd/main_blackbox_test",
+        "-std-path",
+        "C:\\Users\\sa\\.moon\\lib\\core\\_build\\wasm-gc\\release\\bundle",
+        "-i",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\moonbench.mi:bench",
+        "-i",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\cmd\\main\\main.mi:main",
+        "-i",
+        "C:\\Users\\sa\\.moon\\lib\\core\\_build\\wasm-gc\\release\\bundle\\prelude\\prelude.mi:prelude",
+        "-pkg-sources",
+        "osc2026/moonbench/cmd/main_blackbox_test:D:\\CodexProject\\moonbit\\cmd\\main",
+        "-target",
+        "wasm-gc",
+        "-blackbox-test",
+        "-workspace-path",
+        "D:\\CodexProject\\moonbit",
+        "-all-pkgs",
+        "D:\\CodexProject\\moonbit\\_build\\wasm-gc\\debug\\check\\all_pkgs.json"
+      ],
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    }
+  ],
+  "deps": [],
+  "backend": "wasm-gc",
+  "opt_level": "debug",
+  "source": null
+}
