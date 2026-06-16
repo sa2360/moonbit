@@ -12,8 +12,10 @@ MoonBit projects often need lightweight timing summaries while developing parser
 
 - `empty() -> Summary`
 - `singleton(elapsed_ns : Int) -> Summary`
+- `has_samples(summary : Summary) -> Bool`
 - `Summary::add_sample(summary : Summary, elapsed_ns : Int) -> Summary`
 - `merge(left : Summary, right : Summary) -> Summary`
+- `spread_ns(summary : Summary) -> Int`
 - `samples_per_second(summary : Summary) -> Int`
 - `is_stable(summary : Summary, tolerance_ppm : Int) -> Bool`
 - `format_ns(ns : Int) -> String`

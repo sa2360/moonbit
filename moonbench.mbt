@@ -31,6 +31,12 @@ pub fn singleton(elapsed_ns : Int) -> Summary {
 }
 
 ///|
+/// Return true when the summary contains at least one sample.
+pub fn has_samples(summary : Summary) -> Bool {
+  summary.count > 0
+}
+
+///|
 /// Add one elapsed sample to an existing summary.
 pub fn Summary::add_sample(summary : Self, elapsed_ns : Int) -> Summary {
   if summary.count == 0 {
@@ -77,6 +83,16 @@ pub fn merge(left : Summary, right : Summary) -> Summary {
 }
 
 ///|
+/// Difference between the slowest and fastest samples in nanoseconds.
+pub fn spread_ns(summary : Summary) -> Int {
+  if summary.count < 2 {
+    0
+  } else {
+    summary.max_ns - summary.min_ns
+  }
+}
+
+///|
 /// Integer operations per second, using nanoseconds as the time base.
 pub fn samples_per_second(summary : Summary) -> Int {
   if summary.count == 0 || summary.total_ns <= 0 {
@@ -96,7 +112,7 @@ pub fn is_stable(summary : Summary, tolerance_ppm : Int) -> Bool {
   if summary.count < 2 || summary.mean_ns <= 0 {
     false
   } else {
-    let spread = summary.max_ns - summary.min_ns
+    let spread = spread_ns(summary)
     let whole = summary.mean_ns / 1_000_000
     let remain = summary.mean_ns % 1_000_000
     let allowed = whole * tolerance_ppm +
