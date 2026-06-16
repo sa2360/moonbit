@@ -1,16 +1,32 @@
 # Usage Guide
 
-`moonbench` keeps timing collection separate from timing statistics. A caller measures elapsed time with the runtime or host environment it already uses, then feeds elapsed nanoseconds into `Summary`.
+`moonbench` can either aggregate elapsed samples supplied by a caller, or run a small function repeatedly and measure it with `benchmark`.
+
+The built-in measurement helper uses the standard environment clock. It is convenient for demos, CI smoke checks, and lightweight comparisons. For high-precision research benchmarks, feed samples from a dedicated clock or benchmark runner into `add_sample`.
 
 ## Basic Flow
+
+```moonbit
+let summary = @bench.benchmark(5, () => {
+  let mut total = 0
+  for i in 0..<20_000_000 {
+    total = total + i % 17
+  }
+  ignore(total)
+})
+
+println(@bench.describe(summary))
+```
+
+## Manual Samples
+
+If you already have elapsed nanoseconds from another clock or test runner, feed them directly:
 
 ```moonbit
 let summary = @bench.empty()
   .add_sample(980_000)
   .add_sample(1_020_000)
   .add_sample(1_000_000)
-
-println(@bench.describe(summary))
 ```
 
 ## Interpreting Fields

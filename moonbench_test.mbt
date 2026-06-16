@@ -20,6 +20,26 @@ test "empty summaries have no samples or spread" {
 }
 
 ///|
+test "benchmark records one sample per iteration" {
+  let summary = benchmark(3, () => {
+    let mut total = 0
+    for i in 0..<100 {
+      total = total + i
+    }
+    ignore(total)
+  })
+  assert_eq(summary.count, 3)
+  assert_eq(has_samples(summary), true)
+}
+
+///|
+test "benchmark ignores negative iteration counts" {
+  let summary = benchmark(-1, () => ignore(1 + 1))
+  assert_eq(summary.count, 0)
+  assert_eq(has_samples(summary), false)
+}
+
+///|
 test "merge keeps empty as identity" {
   let left = singleton(200).add_sample(300)
   let from_left = merge(empty(), left)

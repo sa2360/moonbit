@@ -8,10 +8,14 @@ It is designed for the MoonBit OSC2026 ecosystem package track: clear API bounda
 
 MoonBit projects often need lightweight timing summaries while developing parsers, algorithms, CLI tools, and examples. `moonbench` does not own the clock source. It accepts elapsed nanoseconds from your runtime, then provides stable aggregate calculations and compact report strings.
 
+For quick demos and lightweight tooling, `benchmark` can also run a function repeatedly and measure it with the standard environment clock.
+
 ## API
 
 - `empty() -> Summary`
 - `singleton(elapsed_ns : Int) -> Summary`
+- `measure(run : () -> Unit) -> Int`
+- `benchmark(iterations : Int, run : () -> Unit) -> Summary`
 - `has_samples(summary : Summary) -> Bool`
 - `Summary::add_sample(summary : Summary, elapsed_ns : Int) -> Summary`
 - `merge(left : Summary, right : Summary) -> Summary`
@@ -24,22 +28,25 @@ MoonBit projects often need lightweight timing summaries while developing parser
 ## Example
 
 ```moonbit nocheck
-let summary = @bench.empty()
-  .add_sample(980_000)
-  .add_sample(1_020_000)
-  .add_sample(1_000_000)
+let summary = @bench.benchmark(5, () => {
+  let mut total = 0
+  for i in 0..<20_000_000 {
+    total = total + i % 17
+  }
+  ignore(total)
+})
 
 println(@bench.describe(summary))
 println("spread=\{@bench.format_ns(@bench.spread_ns(summary))}")
 println("stable(5%)=\{@bench.is_stable(summary, 50_000)}")
 ```
 
-Output:
+Example output, values depend on the machine:
 
 ```text
-count=3, mean=1 ms, min=980 us, max=1 ms, throughput=1000/s
-spread=40 us
-stable(5%)=true
+count=5, mean=13 ms, min=11 ms, max=23 ms, throughput=72/s
+spread=12 ms
+stable(5%)=false
 ```
 
 ## Run

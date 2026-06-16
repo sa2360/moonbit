@@ -31,6 +31,30 @@ pub fn singleton(elapsed_ns : Int) -> Summary {
 }
 
 ///|
+/// Measure one execution of `run` and return elapsed nanoseconds.
+///
+/// This helper uses the standard environment clock, so it is portable and
+/// intended for lightweight tool output rather than laboratory-grade timing.
+pub fn measure(run : () -> Unit) -> Int {
+  let start = @env.now()
+  run()
+  let finish = @env.now()
+  let elapsed_ms = if finish > start { finish - start } else { 0UL }
+  elapsed_ms.to_int() * 1_000_000
+}
+
+///|
+/// Execute `run` repeatedly and aggregate the measured elapsed times.
+pub fn benchmark(iterations : Int, run : () -> Unit) -> Summary {
+  let mut summary = empty()
+  let count = if iterations < 0 { 0 } else { iterations }
+  for _ in 0..<count {
+    summary = summary.add_sample(measure(run))
+  }
+  summary
+}
+
+///|
 /// Return true when the summary contains at least one sample.
 pub fn has_samples(summary : Summary) -> Bool {
   summary.count > 0
