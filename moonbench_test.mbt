@@ -1,11 +1,22 @@
 ///|
 test "add samples updates all aggregate fields" {
   let summary = empty().add_sample(100).add_sample(140).add_sample(160)
+  assert_eq(has_samples(summary), true)
   assert_eq(summary.count, 3)
   assert_eq(summary.total_ns, 400)
   assert_eq(summary.min_ns, 100)
   assert_eq(summary.max_ns, 160)
   assert_eq(summary.mean_ns, 133)
+  assert_eq(spread_ns(summary), 60)
+}
+
+///|
+test "empty summaries have no samples or spread" {
+  let summary = empty()
+  assert_eq(has_samples(summary), false)
+  assert_eq(spread_ns(summary), 0)
+  assert_eq(samples_per_second(summary), 0)
+  assert_eq(describe(summary), "count=0")
 }
 
 ///|
