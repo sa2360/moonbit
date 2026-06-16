@@ -48,7 +48,7 @@ moon run cmd/main
 
 ## OSC2026 Checklist
 
-- Public repository: <https://github.com/sa2360/moonbench>.
+- Public repository: <https://github.com/sa2360/moonbit>.
 - MoonBit as main language: source is in `.mbt` files.
 - README: this file explains motivation, API, example, and commands.
 - Runnable example: `cmd/main`.

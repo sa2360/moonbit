@@ -12,7 +12,9 @@ moonbench：MoonBit 轻量级基准测试统计库
 
 `moonbench` 是一个面向 MoonBit 生态的轻量级 benchmark 统计库。它不绑定具体平台时钟，而是接收调用方提供的耗时纳秒数，输出样本数量、总耗时、最小值、最大值、均值、吞吐量和稳定性判断。该边界让它可以被 CLI 工具、算法库、解析器、教学示例和 CI 性能检查复用。
 
-公开仓库：https://github.com/sa2360/moonbench
+GitLink 仓库：https://gitlink.org.cn/sa2360/moonbench
+
+GitHub 镜像：https://github.com/sa2360/moonbit
 
 ## 核心功能
 
@@ -28,7 +30,8 @@ moonbench：MoonBit 轻量级基准测试统计库
 
 ## 验收准备
 
-- 公开仓库：https://github.com/sa2360/moonbench。
+- GitLink 仓库：https://gitlink.org.cn/sa2360/moonbench。
+- GitHub 镜像：https://github.com/sa2360/moonbit。
 - README：包含动机、API、示例、运行命令和 Mooncakes 发布步骤。
 - 测试：执行 `moon test`。
 - CI：`.github/workflows/ci.yml`。
