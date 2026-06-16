@@ -30,6 +30,7 @@ let summary = @bench.empty()
   .add_sample(1_000_000)
 
 println(@bench.describe(summary))
+println("spread=\{@bench.format_ns(@bench.spread_ns(summary))}")
 println("stable(5%)=\{@bench.is_stable(summary, 50_000)}")
 ```
 
@@ -37,6 +38,7 @@ Output:
 
 ```text
 count=3, mean=1 ms, min=980 us, max=1 ms, throughput=1000/s
+spread=40 us
 stable(5%)=true
 ```
 
