@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Help repository hosts classify MoonBit source files correctly.
+*.mbt linguist-language=MoonBit
+moon.mod linguist-language=MoonBit
+moon.pkg linguist-language=MoonBit
