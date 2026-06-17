@@ -13,6 +13,13 @@ pub(all) struct Summary {
 } derive(Debug, Eq)
 
 ///|
+/// Simple performance budget for CI or documentation smoke checks.
+pub(all) struct Budget {
+  max_mean_ns : Int
+  max_spread_ppm : Int
+} derive(Debug, Eq)
+
+///|
 /// Return an empty summary.
 pub fn empty() -> Summary {
   { count: 0, total_ns: 0, min_ns: 0, max_ns: 0, mean_ns: 0 }
@@ -144,6 +151,22 @@ pub fn is_stable(summary : Summary, tolerance_ppm : Int) -> Bool {
       remain % 1_000 * tolerance_ppm / 1_000_000
     spread <= allowed
   }
+}
+
+///|
+/// Return true when a summary is non-empty and fits the given performance
+/// budget.
+pub fn meets_budget(summary : Summary, budget : Budget) -> Bool {
+  has_samples(summary) &&
+  summary.mean_ns <= budget.max_mean_ns &&
+  is_stable(summary, budget.max_spread_ppm)
+}
+
+///|
+/// Produce a compact pass/fail budget report for CI logs.
+pub fn budget_report(summary : Summary, budget : Budget) -> String {
+  let status = if meets_budget(summary, budget) { "pass" } else { "fail" }
+  "\{status}: mean<=\{format_ns(budget.max_mean_ns)}, spread<=\{budget.max_spread_ppm}ppm, \{describe(summary)}"
 }
 
 ///|

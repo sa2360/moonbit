@@ -15,4 +15,10 @@ fn main {
   println(@bench.describe(summary))
   println("spread=\{@bench.format_ns(@bench.spread_ns(summary))}")
   println("stable(5%)=\{@bench.is_stable(summary, 50_000)}")
+  println(
+    @bench.budget_report(summary, @bench.Budget::{
+      max_mean_ns: 30_000_000,
+      max_spread_ppm: 1_200_000,
+    }),
+  )
 }

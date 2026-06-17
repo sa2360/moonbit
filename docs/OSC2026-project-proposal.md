@@ -16,12 +16,17 @@ GitLink 仓库：https://gitlink.org.cn/sa2360/moonbit
 
 GitHub 镜像：https://github.com/sa2360/moonbit
 
+## 与官方 `moon bench` 的区别
+
+官方 `moon bench` 适合严肃 benchmark：它集成在 MoonBit 构建系统中，支持包、文件、后端、release/debug 等维度，并提供批量测量和统计分析。`moonbench` 不替代官方命令，而是补充一个更轻量的“统计与 CI 报告层”：它可以接收外部测试框架、CI 脚本、日志或宿主时钟采集到的耗时样本，生成一行文本摘要，并通过 `Budget`、`meets_budget`、`budget_report` 做简单性能预算判断，适合 README 示例、教学演示、工具输出和 CI smoke check。
+
 ## 核心功能
 
 - `Summary` 聚合模型：记录 count、total、min、max、mean。
 - 单样本追加与多摘要合并：便于分批统计和多阶段 benchmark。
 - 吞吐量估算：以纳秒为时间基准输出 samples/s。
 - 稳定性判断：用 ppm 容差判断 min/max 波动是否在可接受范围。
+- 性能预算判断：输出适合 CI 日志的 pass/fail 报告。
 - 文本报告：输出适合命令行、CI 日志和 README 示例的一行摘要。
 
 ## 技术路线

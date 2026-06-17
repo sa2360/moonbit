@@ -77,6 +77,27 @@ test "stability uses ppm tolerance" {
 }
 
 ///|
+test "budget checks combine mean and spread constraints" {
+  let summary = singleton(1_000).add_sample(1_020).add_sample(980)
+  let passing = Budget::{ max_mean_ns: 1_100, max_spread_ppm: 50_000 }
+  let too_slow = Budget::{ max_mean_ns: 900, max_spread_ppm: 50_000 }
+  let too_noisy = Budget::{ max_mean_ns: 1_100, max_spread_ppm: 10_000 }
+  assert_eq(meets_budget(summary, passing), true)
+  assert_eq(meets_budget(summary, too_slow), false)
+  assert_eq(meets_budget(summary, too_noisy), false)
+}
+
+///|
+test "budget report is suitable for logs" {
+  let summary = singleton(1_000).add_sample(1_000)
+  let budget = Budget::{ max_mean_ns: 1_100, max_spread_ppm: 50_000 }
+  assert_eq(
+    budget_report(summary, budget),
+    "pass: mean<=1 us, spread<=50000ppm, count=2, mean=1 us, min=1 us, max=1 us, throughput=1000000/s",
+  )
+}
+
+///|
 test "format and describe are concise" {
   assert_eq(format_ns(42), "42 ns")
   assert_eq(format_ns(42_000), "42 us")

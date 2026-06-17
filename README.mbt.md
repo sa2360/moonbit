@@ -1,19 +1,22 @@
 # moonbench
 
-`moonbench` is a small MoonBit benchmark statistics toolkit for stopwatch-style measurements.
+`moonbench` is a small MoonBit benchmark reporting toolkit for stopwatch-style measurements, external timing samples, and CI performance budgets.
 
-It is designed for the MoonBit OSC2026 ecosystem package track: clear API boundary, runnable tests, a minimal CLI example, CI configuration, and an OSI-approved open-source license.
+It is designed for the MoonBit OSC2026 ecosystem package track: clear API boundary, runnable tests, a minimal CLI example, CI configuration, and an OSI-approved open-source license. It complements the official `moon bench` workflow instead of replacing it.
 
 ## Why
 
 MoonBit projects often need lightweight timing summaries while developing parsers, algorithms, CLI tools, and examples. `moonbench` does not own the clock source. It accepts elapsed nanoseconds from your runtime, then provides stable aggregate calculations and compact report strings.
 
-For quick demos and lightweight tooling, `benchmark` can also run a function repeatedly and measure it with the standard environment clock.
+For quick demos and lightweight tooling, `benchmark` can also run a function repeatedly and measure it with the standard environment clock. For CI smoke checks, `Budget`, `meets_budget`, and `budget_report` turn timing summaries into pass/fail reports.
+
+See [docs/moon-bench-comparison.md](docs/moon-bench-comparison.md) for the difference from official `moon bench`.
 
 ## API
 
 - `empty() -> Summary`
 - `singleton(elapsed_ns : Int) -> Summary`
+- `Budget`
 - `measure(run : () -> Unit) -> Int`
 - `benchmark(iterations : Int, run : () -> Unit) -> Summary`
 - `has_samples(summary : Summary) -> Bool`
@@ -24,6 +27,8 @@ For quick demos and lightweight tooling, `benchmark` can also run a function rep
 - `is_stable(summary : Summary, tolerance_ppm : Int) -> Bool`
 - `format_ns(ns : Int) -> String`
 - `describe(summary : Summary) -> String`
+- `meets_budget(summary : Summary, budget : Budget) -> Bool`
+- `budget_report(summary : Summary, budget : Budget) -> String`
 
 ## Example
 

@@ -18,6 +18,19 @@ let summary = @bench.benchmark(5, () => {
 println(@bench.describe(summary))
 ```
 
+## CI Budget Report
+
+Use a `Budget` when you want a quick pass/fail line in CI logs:
+
+```moonbit
+let budget = @bench.Budget::{
+  max_mean_ns: 30_000_000,
+  max_spread_ppm: 1_200_000,
+}
+
+println(@bench.budget_report(summary, budget))
+```
+
 ## Manual Samples
 
 If you already have elapsed nanoseconds from another clock or test runner, feed them directly:
